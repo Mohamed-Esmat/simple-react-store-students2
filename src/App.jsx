@@ -1,15 +1,17 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "./App.module.css";
 import Header from "./components/Header";
 import SearchBar from "./components/SeachBar";
 import Filters from "./components/Filters";
 import ProductList from "./components/ProductList";
 import Cart from "./components/Cart";
+import useProducts from "./hooks/useProducts";
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // const [products, setProducts] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
+  const { products, loading, error } = useProducts();
 
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
@@ -20,29 +22,29 @@ function App() {
     ? cartItems.reduce((sum, item) => sum + (item?.qty || 0), 0)
     : 0;
 
-  useEffect(() => {
-    let cancelled = false;
-    async function fetchData() {
-      try {
-        setLoading(true);
-        setError(null);
-        const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) throw new Error("Failed to fetch products");
-        const data = await response.json();
-        if (!cancelled) setProducts(data);
-      } catch (error) {
-        if (!cancelled) setError(error.message || "Something went wrong");
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
-    }
+  // useEffect(() => {
+  //   let cancelled = false;
+  //   async function fetchData() {
+  //     try {
+  //       setLoading(true);
+  //       setError(null);
+  //       const response = await fetch("https://fakestoreapi.com/products");
+  //       if (!response.ok) throw new Error("Failed to fetch products");
+  //       const data = await response.json();
+  //       if (!cancelled) setProducts(data);
+  //     } catch (error) {
+  //       if (!cancelled) setError(error.message || "Something went wrong");
+  //     } finally {
+  //       if (!cancelled) setLoading(false);
+  //     }
+  //   }
 
-    fetchData();
+  //   fetchData();
 
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+  //   return () => {
+  //     cancelled = true;
+  //   };
+  // }, []);
 
   // Derive categories from loaded products
   const categories = useMemo(() => {
