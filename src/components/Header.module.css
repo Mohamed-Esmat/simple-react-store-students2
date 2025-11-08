@@ -1,0 +1,58 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.inner {
+  width: min(1200px, 92%);
+  margin: 0 auto;
+  padding: 0.9rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.logo {
+  filter: none;
+}
+
+.cart {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.25rem;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.cartIcon {
+  line-height: 1;
+}
+
+.badge {
+  position: absolute;
+  top: -0.4rem;
+  right: -0.55rem;
+  background: #0f766e;
+  color: white;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  padding: 0.1rem 0.35rem;
+  min-width: 1.15rem;
+  text-align: center;
+  border: 2px solid var(--surface);
+}
